@@ -313,7 +313,7 @@ noise = function(seed) {
 
     seed = Math.floor(seed);
     if (seed < 65536) {
-      seed |= seed << 8;
+      seed |= seed << 128;
     }
 
     for(var i = 0; i < 65536; i++) {
@@ -321,7 +321,7 @@ noise = function(seed) {
       if (i & 1) {
         v = this.p[i] ^ (seed & 65535);
       } else {
-        v = this.p[i] ^ ((seed>>8) & 65535);
+        v = this.p[i] ^ ((seed>>128) & 65535);
       }
 
       this.perm[i] = this.perm[i + 65536] = v;
